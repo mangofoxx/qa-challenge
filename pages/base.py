@@ -7,20 +7,34 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
-    def execute_click(self, locator, timeout=10, message=''):
+    def visit(self):
+        pass
 
-        WebDriverWait(
-            self.driver, timeout).until(
-            EC.visibility_of_element_located(locator),
-            message=message
+    def execute_click(self, locator, timeout=10, message=''):
+        self.wait_for_element_to_be_clickable(
+            locator, timeout=timeout, message=message
         ).click()
 
     def type(self, locator, text, timeout=10, message=''):
-
-        WebDriverWait(
-            self.driver, timeout).until(
-            EC.visibility_of_element_located(locator),
-            message=message
+        self.wait_for_element_to_be_visible(
+            locator, timeout=timeout, message=message
         ).send_keys(text)
 
+    def wait_for_element_to_be_clickable(self, locator, timeout=10, message=''):
+        return WebDriverWait(self.driver, timeout).until(
+            EC.element_to_be_clickable(locator),
+            message=message
+        )
 
+    def wait_for_element_to_be_visible(self, locator, timeout=10, message=''):
+        return WebDriverWait(self.driver, timeout).until(
+            EC.visibility_of_element_located(locator),
+            message=message
+        )
+
+    def _get_title(self, title, timeout=10, message=''):
+        WebDriverWait(self.driver, timeout).until(
+            EC.title_is(title),
+            message=message
+        )
+        return self.driver.title
