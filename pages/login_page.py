@@ -55,3 +55,22 @@ class LoginPage(BasePage):
         self.execute_click(
             self.LOGIN_BUTTON, message='Could not confirm login'
         )
+
+    def is_login_button_displayed(self):
+        return self.is_visible(self.LOGIN_BUTTON)
+
+    def login__email_pass(self):
+        self.visit()
+
+        self.wait_for_auth_page()
+        self.wait_for_email_input()
+        self.wait_for_password_input()
+
+        self.fill_in_email()
+        self.fill_in_password()
+
+        self.wait_for_element_to_be_clickable(
+            self.LOGIN_BUTTON,
+            message='Login button not clickable, login failed!'
+        )
+        self.confirm_login()
