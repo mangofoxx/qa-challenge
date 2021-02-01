@@ -35,6 +35,7 @@ class TestUserDashboard(BaseTestCase):
             on participants page
                 (title, location, description)
         """
+        # Provide test-related data
         test_data__general_card = dict(
             title='Title',
             location='Test Location',
@@ -42,15 +43,19 @@ class TestUserDashboard(BaseTestCase):
         )
         test_data__survey_options = ['TESTOPT1', 'TESTOPT2']
 
+        # Init pages to access objects and actions
         self.login_page = LoginPage(self.driver)
         self.profile_page = ProfilePage(self.driver)
         self.cards = Cards(self.driver)
 
+        # execute login step
         self.login_page.login__email_pass()
 
+        # Init survey creation
         self.profile_page.open_menu__create()
         self.profile_page.menu_option_click__survey()
 
+        # Fill in the data
         self.cards.general_card.wait_for_wizard_subtitle()
         self.cards.general_card.fill_information_card(**test_data__general_card)
 
@@ -60,6 +65,7 @@ class TestUserDashboard(BaseTestCase):
         self.cards.settings_card.wait_for_wizard_subtitle()
         self.cards.settings_card.finilize_poll()
 
+        # Perform assertions
         assert (
                 self.cards.init_card.init_poll_title
                 == test_data__general_card.get('title')
