@@ -12,7 +12,7 @@ class BasePage:
 
     def execute_click(self, locator, timeout=10, message=''):
         self.wait_for_element_to_be_clickable(
-            locator, timeout=timeout, message='not clickabe'
+            locator, timeout=timeout, message=message
         ).click()
 
     def type(self, locator, text, timeout=10, message=''):
