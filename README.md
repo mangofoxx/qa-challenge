@@ -14,4 +14,10 @@ $ conda activate qa-challenge
 $ pip install -r requirements.txt
 ```
 
+## Running a test using pytest
+
+```bash
+$ cd /qa-challenge
+$ pytest tests/ --html=./report/report-qa-challenge.html
+```
  
