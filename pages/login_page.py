@@ -22,6 +22,7 @@ class LoginPage(BasePage):
         self.driver.get(TestConfig.LOGIN_PAGE_URL)
 
     def wait_for_auth_page(self):
+        """Method allows wait for auth page to become visible"""
         self.wait_for_element_to_be_visible(
             self.AUTH_PAGE,
             message='Auth page not visible'
@@ -60,6 +61,10 @@ class LoginPage(BasePage):
         return self.is_visible(self.LOGIN_BUTTON)
 
     def login__email_pass(self):
+        """Method performs login flow with DEFAULT user
+
+        :return: None
+        """
         self.visit()
 
         self.wait_for_auth_page()
