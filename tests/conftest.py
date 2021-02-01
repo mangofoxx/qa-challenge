@@ -2,7 +2,6 @@ import pytest
 
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
 
 
 @pytest.fixture(params=['chrome'], scope='class')
