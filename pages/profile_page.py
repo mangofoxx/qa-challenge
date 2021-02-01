@@ -29,21 +29,25 @@ class ProfilePage(BasePage):
         )
 
     def open_menu__create(self):
+        """Method waits for a Create menu and clicks to open the menu"""
         self.wait_for_create_menu().click()
 
     def menu_option_click__survey(self):
+        """Method executes click on an open menu on user page"""
         return self.execute_click(
             self.MENU_ITEM_SURVEY,
             message='Could not click on menu item Survey'
         )
 
     def wait_for_user_menu(self):
+        """Method waits for user menu triger-button to become clickable"""
         return self.wait_for_element_to_be_clickable(
             self.USER_MENU,
             message='User menu is not clickable'
         )
 
     def wait_for_create_menu(self):
+        """Method waits for `create` menu triger-button to become clickable"""
         return self.wait_for_element_to_be_clickable(
             self.CREATE_POLL,
             message='+Create menu is not clickable'
